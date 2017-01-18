@@ -1,15 +1,19 @@
-var message = "in global";
-console.log("global: message = " + message);
-
-var a = function () {
-  var message = "inside a";
-  console.log("a: message = " + message);
-
-  function b () {
-    console.log("b: message = " + message); 
+// Closures
+function makeMultiplier (multiplier) {
+  // var multiplier = 2;
+  function b() {
+    console.log("Multiplier is: " + multiplier);
   }
-
   b();
+
+
+  return (
+      function (x) {
+        return multiplier * x;
+      }
+
+    );
 }
 
-a();
+var doubleAll = makeMultiplier(2);
+console.log(doubleAll(10)); // its own exec env
